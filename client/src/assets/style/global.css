@@ -1,0 +1,123 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+  font-family: "Poppins", sans-serif !important;
+}
+
+#root {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  background-color: #f9f9f9;
+}
+
+:root {
+  --main-color: #0d6efd;
+}
+
+.main--color {
+  color: var(--main-color);
+}
+
+#about,
+#contact,
+#question,
+#features,
+#tips {
+  scroll-margin-top: 3rem;
+}
+
+/* Loading  */
+.laoding {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* Navbar */
+#logo {
+  width: 150px;
+  height: 50px;
+}
+
+/* Hero */
+.banner {
+  background: url("../image/banner.jpg") no-repeat center center;
+  background-size: cover;
+  padding: 7rem 0;
+}
+
+.banner__content {
+  margin-left: 5rem;
+}
+
+/* Features */
+.feature__item {
+  background-color: #f9f9fd;
+  transition: all 0.3s linear;
+}
+
+.feature__item:hover {
+  background-color: #fff;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  transform: translateY(-10px);
+}
+
+/* Health Tips */
+.card {
+  border: none;
+  background-color: #fff;
+  transition: all 0.3s linear;
+}
+
+.card:hover {
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
+.health__tips img {
+  height: 200px;
+  transition: all 0.3s linear;
+}
+
+.health__tips img:hover {
+  transform: scale(1.3);
+}
+
+.card-body {
+  background-color: #fff;
+}
+
+/* Contact */
+input,
+textarea {
+  box-shadow: none !important;
+}
+
+/* Sidenav */
+.offcanvas ul li:hover {
+  background-color: #f7f7f7;
+}
+
+.offcanvas ul li {
+  transition: all 0.2s linear;
+}
+
+/* Image size */
+
+/* Small */
+@media only screen and (max-width: 768px) {
+  .health__tips img {
+    height: 300px;
+  }
+
+  .banner__content {
+    margin-left: 1rem;
+  }
+}

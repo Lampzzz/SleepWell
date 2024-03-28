@@ -1,0 +1,120 @@
+[
+  {
+    "_id": {
+      "$oid": "65d405dfe09c27ab323968df"
+    },
+    "firstName": "James",
+    "middleName": "",
+    "lastName": "Lampaza",
+    "fullName": "James Lampaza",
+    "email": "super_admin@gmail.com",
+    "passwordHash": "$2a$10$YDnCvchbI6RroY.yWrY64.E7oR8dWqLx68LijFtjIdNT9WybJdYN2",
+    "avatar": "default.jpg",
+    "registered": "02/20/2024",
+    "role": "Admin",
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "65e27a53626eb0003f52f181"
+    },
+    "firstName": "Jocob",
+    "middleName": "",
+    "lastName": "Lampaza",
+    "fullName": "Jocob Lampaza",
+    "email": "lampazaj@gmail.com",
+    "passwordHash": "$2a$10$21H3aKg7pZ.jSjZmZNAs4efX54xVE1.ikGVAbMfXqp5UCvCKWp.iu",
+    "avatar": "default.jpg",
+    "registered": "03/02/2024",
+    "role": "User",
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "65e27a73626eb0003f52f187"
+    },
+    "firstName": "Maosami",
+    "middleName": "",
+    "lastName": "De Leon",
+    "fullName": "Maosami De Leon",
+    "email": "masaomi@gmail.com",
+    "passwordHash": "James11@",
+    "avatar": "default.jpg",
+    "registered": "03/02/2024",
+    "role": "User",
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "65e27a8c626eb0003f52f18d"
+    },
+    "firstName": "Denver",
+    "middleName": "",
+    "lastName": "Alapad",
+    "fullName": "Alapad Denver",
+    "email": "denver@gmail.com",
+    "passwordHash": "$2a$10$4HktIfZUHu/1CCBXNs9PCOwn/k25lZuQ1beQ7c7jH7miU9LKvYr1y",
+    "avatar": "default.jpg",
+    "registered": "03/02/2024",
+    "role": "User",
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "65e577e4a6286cbcb3ee81ba"
+    },
+    "firstName": "Rydelc",
+    "middleName": "",
+    "lastName": "Dadap",
+    "fullName": "Rydelc Dadap",
+    "email": "dadap@gmail.com",
+    "passwordHash": "$2a$10$tzLbF6oT2VtPOtiFqWm6o.Jw/YIT4d/8eRB4HBC2jm5GkaL.gbdgO",
+    "avatar": "default.jpg",
+    "registered": "03/04/2024",
+    "role": "User",
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "65e5cc0aadc370f396494f11"
+    },
+    "firstName": "Sherwin",
+    "middleName": "",
+    "lastName": "Sister",
+    "fullName": "Sherwin Sister",
+    "email": "ading@gmail.com",
+    "passwordHash": "$2a$10$Rl.KabsD/gPQMOGaX/v7/eAo26rPSj6/LqsaxnxxQejGPWpdq60f.",
+    "avatar": "default.jpg",
+    "registered": "03/04/2024",
+    "role": "User",
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "65f19cfb816c53cefaf11aaa"
+    },
+    "firstName": "Paul",
+    "middleName": "",
+    "lastName": "Acasio",
+    "fullName": "Paul Acasio",
+    "email": "acasio@gmail.com",
+    "passwordHash": "$2a$10$4HktIfZUHu/1CCBXNs9PCOwn/k25lZuQ1beQ7c7jH7miU9LKvYr1y",
+    "avatar": "default.jpg",
+    "registered": "03/02/2024",
+    "role": "User"
+  },
+  {
+    "_id": {
+      "$oid": "65f19d81816c53cefaf11aac"
+    },
+    "firstName": "Lenard",
+    "middleName": "",
+    "lastName": "Laquila",
+    "fullName": "Lenard Laquila",
+    "email": "laquila@gmail.com",
+    "passwordHash": "$2a$10$4HktIfZUHu/1CCBXNs9PCOwn/k25lZuQ1beQ7c7jH7miU9LKvYr1y",
+    "avatar": "default.jpg",
+    "registered": "03/02/2024",
+    "role": "User"
+  }
+]

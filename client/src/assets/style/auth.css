@@ -1,0 +1,37 @@
+.auth {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  min-height: 100vh;
+  background-color: #f8f9fa;
+}
+
+.auth__img {
+  width: 170px;
+  height: 60px;
+}
+
+.eye-icon {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 5%;
+  cursor: pointer;
+}
+
+.wrapper {
+  /* border: 1px solid #dee2e6; */
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  overflow-y: auto;
+  position: relative;
+}
+
+.form-control.error {
+  border: 1px solid red !important;
+}
+
+/* Disable */
+.btn__disabled {
+  border: none;
+}
