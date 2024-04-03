@@ -1,4 +1,4 @@
-import { RECORD_URL } from "../../../data/endpoint";
+import { RECORD_URL, STATUS_URL, SNORE_URL } from "../../../data/endpoint";
 import { apiSlice } from "./apiSlice";
 
 export const recordApiSlice = apiSlice.injectEndpoints({
@@ -11,6 +11,21 @@ export const recordApiSlice = apiSlice.injectEndpoints({
       }),
     }),
 
+    recordStatus: builder.mutation({
+      query: (data) => ({
+        url: `${STATUS_URL}`,
+        method: "POST",
+        body: data,
+      }),
+    }),
+
+    getSnore: builder.query({
+      query: () => ({
+        url: `${SNORE_URL}`,
+        method: "GET",
+      }),
+    }),
+
     getRecords: builder.query({
       query: () => ({
         url: `${RECORD_URL}/data`,
@@ -20,4 +35,9 @@ export const recordApiSlice = apiSlice.injectEndpoints({
   }),
 });
 
-export const { useCreateRecordMutation, useGetRecordsQuery } = recordApiSlice;
+export const {
+  useCreateRecordMutation,
+  useRecordStatusMutation,
+  useGetSnoreQuery,
+  useGetRecordsQuery,
+} = recordApiSlice;

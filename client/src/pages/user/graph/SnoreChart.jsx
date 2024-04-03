@@ -22,8 +22,6 @@ const SnoreChart = () => {
     { day: "Sun", date: "", count: 12, snoreCount: 0 },
   ]);
 
-  console.log(records);
-
   useEffect(() => {
     if (records && records.length > 0) {
       const filteredRecords = records.filter(

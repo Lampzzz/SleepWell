@@ -3,14 +3,20 @@ import { toast } from "react-toastify";
 import Webcam from "react-webcam";
 import UserNavbar from "./UserNavbar";
 import SessionButton from "../../components/button/SessionButton";
-import { useCreateRecordMutation } from "../../services/redux/api/recordApiSlice";
 import { formatTimer, formatTimeInAMPM } from "../../utils/formatTime";
+import {
+  useCreateRecordMutation,
+  useRecordStatusMutation,
+} from "../../services/redux/api/recordApiSlice";
+import { fetchSnoreCount } from "../../services/api/fetchSnoreCount";
 
 const Session = () => {
-  const webcamRef = useRef(null);
-  const mediaRecorderRef = useRef(null);
   const [recordedChunks, setRecordedChunks] = useState([]);
   const [createRecord, { isLoading }] = useCreateRecordMutation();
+  const { snore, setSnore } = fetchSnoreCount();
+  const webcamRef = useRef(null);
+  const mediaRecorderRef = useRef(null);
+  const [recordStatus] = useRecordStatusMutation();
   const [record, setRecord] = useState(false);
   const [pause, setPause] = useState(false);
   const [webcamReady, setWebcamReady] = useState(true);
@@ -30,22 +36,42 @@ const Session = () => {
     return () => clearInterval(interval);
   }, [record, pause]);
 
-  const startRecord = useCallback(() => {
-    setRecord(true);
-    setStartTime(new Date());
+  const startRecord = useCallback(async () => {
+    const response = await recordStatus({ recordStatus: "start" }).unwrap();
 
-    mediaRecorderRef.current = new MediaRecorder(webcamRef.current.stream, {
-      mimeType: "video/webm",
-    });
-    mediaRecorderRef.current.addEventListener(
-      "dataavailable",
-      handleDataAvailable
-    );
-    mediaRecorderRef.current.start();
+    try {
+      if (response.status) {
+        setRecord(true);
+        setStartTime(new Date());
+
+        mediaRecorderRef.current = new MediaRecorder(webcamRef.current.stream, {
+          mimeType: "video/webm",
+        });
+        mediaRecorderRef.current.addEventListener(
+          "dataavailable",
+          handleDataAvailable
+        );
+        mediaRecorderRef.current.start();
+      }
+    } catch (err) {
+      console.log("Error", err.message);
+    }
   }, [webcamRef, setRecord, mediaRecorderRef]);
 
-  const handlePause = () => {
-    setPause(!pause);
+  const handlePause = async () => {
+    try {
+      const response = await recordStatus({
+        recordStatus: pause ? "start" : "pause",
+      }).unwrap();
+
+      if (!response.status) {
+        setPause(true);
+      } else {
+        setPause(false);
+      }
+    } catch (err) {
+      console.log(err.message);
+    }
   };
 
   const handleDataAvailable = useCallback(
@@ -59,28 +85,36 @@ const Session = () => {
 
   const stopRecord = useCallback(async () => {
     try {
-      mediaRecorderRef.current.stop();
-      const currentTime = new Date();
-      const bedtime = formatTimeInAMPM(startTime);
-      const wakeUp = formatTimeInAMPM(currentTime);
-      const sleepDuration = timer;
-      const recordedBlob = new Blob(recordedChunks, { type: "video/webm" });
-      const recordedFile = new File([recordedBlob], "session.mp4", {
-        type: "video/webm",
-      });
+      const response = await recordStatus({ recordStatus: "stop" }).unwrap();
 
-      const formData = new FormData();
-      formData.append("bedtime", bedtime);
-      formData.append("wakeUp", wakeUp);
-      formData.append("sleepDuration", sleepDuration);
-      formData.append("video", recordedFile);
+      if (!response.status) {
+        console.log("Snore from status: ", response.snoreCount);
+        console.log("Snore: ", snore);
 
-      await createRecord(formData).unwrap();
-      toast.success("Record Successfully");
+        mediaRecorderRef.current.stop();
+        const currentTime = new Date();
+        const bedtime = formatTimeInAMPM(startTime);
+        const wakeUp = formatTimeInAMPM(currentTime);
+        const sleepDuration = timer;
+        const recordedBlob = new Blob(recordedChunks, { type: "video/webm" });
+        const recordedFile = new File([recordedBlob], "session.webm", {
+          type: "video/webm",
+        });
 
-      setRecord(false);
-      setPause(false);
-      setTimer(0);
+        const formData = new FormData();
+        formData.append("bedtime", bedtime);
+        formData.append("wakeUp", wakeUp);
+        formData.append("sleepDuration", sleepDuration);
+        formData.append("snoreCount", response.snoreCount);
+        formData.append("video", recordedFile);
+
+        await createRecord(formData).unwrap();
+        toast.success("Record Successfully");
+
+        setRecord(false);
+        setPause(false);
+        setTimer(0);
+      }
     } catch (err) {
       console.error("Unexpected Error", err);
       toast.error(err.data);
@@ -99,7 +133,7 @@ const Session = () => {
         </div>
         <div className="text-center">
           {webcamReady ? (
-            <Webcam audio={true} ref={webcamRef} />
+            <Webcam audio={false} ref={webcamRef} />
           ) : (
             <div
               className="mx-auto bg-white w-50 p-5 rounded-3 shadow-sm "
@@ -109,7 +143,7 @@ const Session = () => {
           {record ? (
             <div className="d-flex justify-content-center gap-5 mb-2 fs-5">
               <span>Sleep Duration: {formatTimer(timer)}</span>
-              <span>Snore Count: </span>
+              <span>Snore Count: {snore}</span>
             </div>
           ) : (
             ""

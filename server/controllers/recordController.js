@@ -4,8 +4,7 @@ import errorHandler from "../utils/errorHandler.js";
 
 const createRecord = async (req, res) => {
   const user = await User.findById(req.user._id);
-  const { bedtime, wakeUp, sleepDuration } = req.body;
-  const snoreCount = 0;
+  const { bedtime, wakeUp, sleepDuration, snoreCount } = req.body;
 
   const formatDate = (date) => {
     const formattedDate = new Date(date);
@@ -33,15 +32,11 @@ const createRecord = async (req, res) => {
     weekEndDate = new Date(weekStartDate);
     weekEndDate.setDate(weekEndDate.getDate() + 6);
 
-    // Calculate the current date
     const currentDate = new Date();
-
-    // Calculate the difference between the current date and the start of the first week
     const daysDifference = Math.floor(
       (currentDate - weekStartDate) / (1000 * 3600 * 24)
     );
 
-    // If more than 7 days have passed since the start of the week, increment the week number
     if (daysDifference >= 7) {
       weekNumber = Math.ceil(daysDifference / 7);
       weekStartDate.setDate(weekStartDate.getDate() + (weekNumber - 1) * 7);

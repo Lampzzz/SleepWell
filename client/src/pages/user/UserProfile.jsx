@@ -185,7 +185,6 @@ const UserProfile = () => {
                   />
                 </div>
               </div>
-
               <div className="d-flex flex-column align-items-center mt-3 mb-5">
                 <ButtonAction
                   style={"btn btn-primary mb-5 w-50"}
