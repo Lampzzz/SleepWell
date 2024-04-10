@@ -1,3 +1,4 @@
+import bcrypt from "bcryptjs";
 import Record from "../models/recordModel.js";
 import User from "../models/userModel.js";
 import errorHandler from "../utils/errorHandler.js";
@@ -95,8 +96,12 @@ const updateUserAccount = async (req, res) => {
     user.lastName = lastName || user.lastName;
     user.middleName = middleName !== undefined ? middleName : "";
     user.email = email || user.email;
-    user.passwordHash = password || user.passwordHash;
     user.avatar = req.file ? req.file.filename : user.avatar;
+
+    if (password) {
+      const hashedPassword = await bcrypt.hash(password, 10);
+      user.passwordHash = hashedPassword;
+    }
 
     if (!nameRegex.test(firstName)) {
       errors.push({
@@ -145,7 +150,6 @@ const updateUserAccount = async (req, res) => {
     });
   } catch (err) {
     errorHandler(res, err);
-    console.log(err.message);
   }
 };
 

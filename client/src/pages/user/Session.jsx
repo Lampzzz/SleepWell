@@ -40,10 +40,14 @@ const Session = () => {
     const response = await recordStatus({ recordStatus: "start" }).unwrap();
 
     try {
-      if (response.status) {
-        setRecord(true);
-        setStartTime(new Date());
+      if (!response.status) {
+        throw new Error("Failed to connect");
+      }
 
+      setRecord(true);
+      setStartTime(new Date());
+
+      if (webcamRef.current && webcamRef.current.stream) {
         mediaRecorderRef.current = new MediaRecorder(webcamRef.current.stream, {
           mimeType: "video/webm",
         });
@@ -52,6 +56,8 @@ const Session = () => {
           handleDataAvailable
         );
         mediaRecorderRef.current.start();
+      } else {
+        toast.error("Webcam not available or not ready.");
       }
     } catch (err) {
       console.log("Error", err.message);
@@ -97,7 +103,7 @@ const Session = () => {
         const wakeUp = formatTimeInAMPM(currentTime);
         const sleepDuration = timer;
         const recordedBlob = new Blob(recordedChunks, { type: "video/webm" });
-        const recordedFile = new File([recordedBlob], "session.webm", {
+        const recordedFile = new File([recordedBlob], "session.mp4", {
           type: "video/webm",
         });
 

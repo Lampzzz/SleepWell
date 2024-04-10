@@ -10,6 +10,7 @@ import PaginationButton from "../../components/button/PaginationButton";
 import { fetchAllUser } from "../../services/api/fetchAllData";
 import { paginationData } from "../../utils/paginationData";
 import { useDeleteUsersAccountMutation } from "../../services/redux/api/adminApiSlice";
+import { formatDate } from "../../utils/formatTime";
 
 const UserAccount = () => {
   const navigate = useNavigate();
@@ -111,7 +112,7 @@ const UserAccount = () => {
                       {user.firstName} {user.middleName} {user.lastName}
                     </td>
                     <td>{user.email}</td>
-                    <td>{user.registered}</td>
+                    <td>{formatDate(user.registered)}</td>
                     <td>
                       <div className="d-flex">
                         <button

@@ -15,51 +15,84 @@ import {
 const BedtimeChart = () => {
   const { users } = fetchAllUser();
   const { records } = fetchAllRecord();
-  const [selectedDate, setSelectedDate] = useState(null);
+  const [selectedDate, setSelectedDate] = useState(new Date());
   const [bedtimeData, setBedtimeData] = useState([
-    { sleepTime: "7 pm", users: 0, bedTime: 0, usersCount: 0 },
-    { sleepTime: "8 pm", users: 0, bedTime: 0, usersCount: 0 },
-    { sleepTime: "9 pm", users: 0, bedTime: 0, usersCount: 0 },
-    { sleepTime: "10 pm", users: 0, bedTime: 0, usersCount: 0 },
-    { sleepTime: "11 pm", users: 0, bedTime: 0, usersCount: 0 },
-    { sleepTime: "12 am", users: 0, bedTime: 0, usersCount: 0 },
-    { sleepTime: "1 am", users: 0, bedTime: 0, usersCount: 0 },
-    { sleepTime: "2 am", users: 0, bedTime: 0, usersCount: 0 },
-    { sleepTime: "3 am", users: 0, bedTime: 0, usersCount: 0 },
-    { sleepTime: "4 am", users: 0, bedTime: 0, usersCount: 0 },
-    { sleepTime: "5 am", users: 0, bedTime: 0, usersCount: 0 },
+    { bedTime: "12 am", users: 0 },
+    { bedTime: "1 am", users: 0 },
+    { bedTime: "2 am", users: 0 },
+    { bedTime: "3 am", users: 0 },
+    { bedTime: "4 am", users: 0 },
+    { bedTime: "5 am", users: 0 },
+    { bedTime: "6 am", users: 0 },
+    { bedTime: "7 am", users: 0 },
+    { bedTime: "8 am", users: 0 },
+    { bedTime: "9 am", users: 0 },
+    { bedTime: "10 am", users: 0 },
+    { bedTime: "11 am", users: 0 },
+    { bedTime: "12 pm", users: 0 },
+    { bedTime: "1 pm", users: 0 },
+    { bedTime: "2 pm", users: 0 },
+    { bedTime: "3 pm", users: 0 },
+    { bedTime: "4 pm", users: 0 },
+    { bedTime: "5 pm", users: 0 },
+    { bedTime: "6 pm", users: 0 },
+    { bedTime: "7 pm", users: 0 },
+    { bedTime: "8 pm", users: 0 },
+    { bedTime: "9 pm", users: 0 },
+    { bedTime: "10 pm", users: 0 },
+    { bedTime: "11 pm", users: 0 },
   ]);
 
   useEffect(() => {
-    if (records && records.length > 0) {
-      const bedtimeMap = new Map();
+    if (records.length === 0) return;
 
-      // Count users for each bedtime
-      records.forEach((record) => {
-        const bedtime = record.bedtime;
-        const usersCount = bedtimeMap.has(bedtime)
-          ? bedtimeMap.get(bedtime) + 1
-          : 1;
-        bedtimeMap.set(bedtime, usersCount);
-      });
+    const updatedBedtimeData = bedtimeData.map((time) => ({
+      ...time,
+      users: new Set(),
+    }));
 
-      // Convert map to array for chart data
-      const bedtimeChartData = Array.from(bedtimeMap).map(
-        ([sleepTime, usersCount]) => ({
-          sleepTime,
-          users: users.filter((user) =>
-            records.some(
-              (record) =>
-                record.bedtime === sleepTime && record.user._id === user._id
-            )
-          ).length,
-          usersCount,
-        })
-      );
+    const filteredRecords = records.filter((record) => {
+      const recordDate = new Date(record.createdAt);
+      if (selectedDate) {
+        return (
+          recordDate.getFullYear() === selectedDate.getFullYear() &&
+          recordDate.getMonth() === selectedDate.getMonth() &&
+          recordDate.getDate() === selectedDate.getDate()
+        );
+      } else {
+        return false;
+      }
+    });
 
-      setBedtimeData(bedtimeChartData);
-    }
-  }, [records, users]);
+    filteredRecords.forEach((record) => {
+      if (record.bedtime) {
+        const timeComponents = record.bedtime.split(":");
+        const hour = parseInt(timeComponents[0]);
+        let bedTime;
+
+        if (hour >= 12) {
+          bedTime = `${hour % 12} pm`;
+        } else {
+          bedTime = `${hour} am`;
+        }
+
+        const index = updatedBedtimeData.findIndex(
+          (time) => time.bedTime === bedTime
+        );
+
+        if (index !== -1) {
+          updatedBedtimeData[index].users.add(String(record.user._id));
+        }
+      }
+    });
+
+    const updatedCountData = updatedBedtimeData.map((time) => ({
+      ...time,
+      users: time.users.size,
+    }));
+
+    setBedtimeData(updatedCountData);
+  }, [records, selectedDate]);
 
   return (
     <div className="col-12 col-lg-6 mb-5 mb-lg-0">
@@ -76,8 +109,8 @@ const BedtimeChart = () => {
         </div>
         <ResponsiveContainer width="100%" height={300}>
           <LineChart width={600} height={300} data={bedtimeData}>
-            <XAxis dataKey="sleepTime" />
-            <YAxis dataKey="users" />
+            <XAxis dataKey="bedTime" />
+            <YAxis domain={[1, users.length]} />
             <Tooltip />
             <Line
               type="monotone"

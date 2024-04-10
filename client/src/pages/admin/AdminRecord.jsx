@@ -4,7 +4,7 @@ import { RiDeleteBin6Line } from "react-icons/ri";
 import { toast } from "react-toastify";
 import AdminNavbar from "./AdminNavbar";
 import TableLoading from "../../components/loading/TableLoading";
-import { formatDuration } from "../../utils/formatTime";
+import { formatDate, formatDuration } from "../../utils/formatTime";
 import { useDeleteUsersRecordMutation } from "../../services/redux/api/adminApiSlice";
 import { fetchAllRecord } from "../../services/api/fetchAllData";
 import { paginationData } from "../../utils/paginationData";
@@ -106,7 +106,7 @@ const AdminRecord = () => {
                       <td>{record.wakeUp}</td>
                       <td>{formatDuration(record.sleepDuration)}</td>
                       <td>{record.snoreCount}</td>
-                      <td>{record.createdAt}</td>
+                      <td>{formatDate(record.createdAt)}</td>
                       <td>
                         <button
                           className="btn text-black-50 border-0 "

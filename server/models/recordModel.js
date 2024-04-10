@@ -1,5 +1,9 @@
 import mongoose from "mongoose";
 
+let currentTimeUTC = Date.now();
+let offset = 8 * 60 * 60 * 1000;
+let currentTimePH = new Date(currentTimeUTC + offset);
+
 const recordSchema = new mongoose.Schema({
   user: {
     type: mongoose.Schema.Types.ObjectId,
@@ -34,6 +38,7 @@ const recordSchema = new mongoose.Schema({
 
   createdAt: {
     type: String,
+    default: new Date(),
     required: true,
   },
 

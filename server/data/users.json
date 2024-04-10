@@ -10,8 +10,8 @@
     "email": "super_admin@gmail.com",
     "passwordHash": "$2a$10$YDnCvchbI6RroY.yWrY64.E7oR8dWqLx68LijFtjIdNT9WybJdYN2",
     "avatar": "default.jpg",
-    "registered": "02/20/2024",
-    "role": "Admin",
+    "registered": "Mon Apr 1 2024 11:17:40 GMT+0800 (Philippine Standard Time)",
+    "role": "Super Admin",
     "__v": 0
   },
   {
@@ -22,11 +22,11 @@
     "middleName": "",
     "lastName": "Lampaza",
     "fullName": "Jocob Lampaza",
-    "email": "lampazaj@gmail.com",
+    "email": "admin@gmail.com",
     "passwordHash": "$2a$10$21H3aKg7pZ.jSjZmZNAs4efX54xVE1.ikGVAbMfXqp5UCvCKWp.iu",
     "avatar": "default.jpg",
-    "registered": "03/02/2024",
-    "role": "User",
+    "registered": "Mon Apr 2 2024 11:17:40 GMT+0800 (Philippine Standard Time)",
+    "role": "Admin",
     "__v": 0
   },
   {
@@ -40,7 +40,7 @@
     "email": "masaomi@gmail.com",
     "passwordHash": "James11@",
     "avatar": "default.jpg",
-    "registered": "03/02/2024",
+    "registered": "Mon Apr 3 2024 11:17:40 GMT+0800 (Philippine Standard Time)",
     "role": "User",
     "__v": 0
   },
@@ -55,7 +55,7 @@
     "email": "denver@gmail.com",
     "passwordHash": "$2a$10$4HktIfZUHu/1CCBXNs9PCOwn/k25lZuQ1beQ7c7jH7miU9LKvYr1y",
     "avatar": "default.jpg",
-    "registered": "03/02/2024",
+    "registered": "Mon Apr 4 2024 11:17:40 GMT+0800 (Philippine Standard Time)",
     "role": "User",
     "__v": 0
   },
@@ -70,7 +70,7 @@
     "email": "dadap@gmail.com",
     "passwordHash": "$2a$10$tzLbF6oT2VtPOtiFqWm6o.Jw/YIT4d/8eRB4HBC2jm5GkaL.gbdgO",
     "avatar": "default.jpg",
-    "registered": "03/04/2024",
+    "registered": "Mon Apr 5 2024 11:17:40 GMT+0800 (Philippine Standard Time)",
     "role": "User",
     "__v": 0
   },
@@ -85,7 +85,7 @@
     "email": "ading@gmail.com",
     "passwordHash": "$2a$10$Rl.KabsD/gPQMOGaX/v7/eAo26rPSj6/LqsaxnxxQejGPWpdq60f.",
     "avatar": "default.jpg",
-    "registered": "03/04/2024",
+    "registered": "Mon Apr 6 2024 11:17:40 GMT+0800 (Philippine Standard Time)",
     "role": "User",
     "__v": 0
   },
@@ -100,8 +100,9 @@
     "email": "acasio@gmail.com",
     "passwordHash": "$2a$10$4HktIfZUHu/1CCBXNs9PCOwn/k25lZuQ1beQ7c7jH7miU9LKvYr1y",
     "avatar": "default.jpg",
-    "registered": "03/02/2024",
-    "role": "User"
+    "registered": "Mon Apr 7 2024 11:17:40 GMT+0800 (Philippine Standard Time)",
+    "role": "User",
+    "__v": 0
   },
   {
     "_id": {
@@ -114,7 +115,8 @@
     "email": "laquila@gmail.com",
     "passwordHash": "$2a$10$4HktIfZUHu/1CCBXNs9PCOwn/k25lZuQ1beQ7c7jH7miU9LKvYr1y",
     "avatar": "default.jpg",
-    "registered": "03/02/2024",
-    "role": "User"
+    "registered": "Mon Apr 8 2024 11:17:40 GMT+0800 (Philippine Standard Time)",
+    "role": "User",
+    "__v": 0
   }
 ]

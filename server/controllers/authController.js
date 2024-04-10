@@ -163,11 +163,6 @@ const verifyOTP = async (req, res) => {
           email,
           passwordHash,
           avatar: "default.jpg",
-          registered: new Date().toLocaleDateString("en-US", {
-            month: "2-digit",
-            day: "2-digit",
-            year: "numeric",
-          }),
         });
 
         res.status(200).json({

@@ -6,13 +6,13 @@ const createRecord = async (req, res) => {
   const user = await User.findById(req.user._id);
   const { bedtime, wakeUp, sleepDuration, snoreCount } = req.body;
 
-  const formatDate = (date) => {
-    const formattedDate = new Date(date);
-    const month = (formattedDate.getMonth() + 1).toString().padStart(2, "0");
-    const day = formattedDate.getDate().toString().padStart(2, "0");
-    const year = formattedDate.getFullYear().toString();
-    return `${month}/${day}/${year}`;
-  };
+  // const formatDate = (date) => {
+  //   const formattedDate = new Date(date);
+  //   const month = (formattedDate.getMonth() + 1).toString().padStart(2, "0");
+  //   const day = formattedDate.getDate().toString().padStart(2, "0");
+  //   const year = formattedDate.getFullYear().toString();
+  //   return `${month}/${day}/${year}`;
+  // };
 
   try {
     const firstRecord = await Record.findOne({ userID: user._id }).sort({
@@ -51,15 +51,10 @@ const createRecord = async (req, res) => {
       sleepDuration,
       snoreCount,
       video: req.file ? req.file.filename : "",
-      createdAt: formatDate(new Date()),
       week: `Week ${weekNumber}`,
     });
 
-    if (!record) {
-      throw new Error("Failed to create record");
-    }
-
-    res.status(200).send();
+    res.status(200).send(record);
   } catch (err) {
     errorHandler(res, err);
   }

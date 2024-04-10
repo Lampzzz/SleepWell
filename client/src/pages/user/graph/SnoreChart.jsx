@@ -13,13 +13,13 @@ const SnoreChart = () => {
   const { records } = fetchUserRecord();
   const [selectedWeek, setSelectedWeek] = useState(0);
   const [sleepData, setSleepData] = useState([
-    { day: "Mon", date: "", count: 0, snoreCount: 0 },
-    { day: "Tue", date: "", count: 2, snoreCount: 0 },
-    { day: "Wed", date: "", count: 4, snoreCount: 0 },
-    { day: "Thu", date: "", count: 6, snoreCount: 0 },
-    { day: "Fri", date: "", count: 8, snoreCount: 0 },
-    { day: "Sat", date: "", count: 10, snoreCount: 0 },
-    { day: "Sun", date: "", count: 12, snoreCount: 0 },
+    { day: "Mon", date: "", snoreCount: 0 },
+    { day: "Tue", date: "", snoreCount: 0 },
+    { day: "Wed", date: "", snoreCount: 0 },
+    { day: "Thu", date: "", snoreCount: 0 },
+    { day: "Fri", date: "", snoreCount: 0 },
+    { day: "Sat", date: "", snoreCount: 0 },
+    { day: "Sun", date: "", snoreCount: 0 },
   ]);
 
   useEffect(() => {
@@ -69,8 +69,6 @@ const SnoreChart = () => {
     </option>
   ));
 
-  console.log(records);
-
   return (
     <div className="col-12 col-lg-6 mb-5 mb-lg-0 ">
       <div className="shadow-sm p-3 rounded-3 bg-white ">
@@ -90,7 +88,7 @@ const SnoreChart = () => {
         <ResponsiveContainer width="100%" height={300}>
           <AreaChart width={600} height={300} data={sleepData}>
             <XAxis dataKey="day" />
-            <YAxis dataKey="count" />
+            <YAxis />
             <Tooltip
               formatter={(value, name, props) => [
                 `Snore Count: ${value}`,

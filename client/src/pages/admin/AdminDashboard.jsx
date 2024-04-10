@@ -2,7 +2,7 @@ import AdminNavbar from "./AdminNavbar";
 import Analysis from "../../components/dashboard/Analysis";
 import HighestData from "../../components/dashboard/HighestData";
 import BedtimeChart from "./graph/BedtimeChart";
-import { formatDuration } from "../../utils/formatTime";
+import { formatDuration, formatDate } from "../../utils/formatTime";
 import { fetchUserDetail } from "../../services/api/fetchUserDetail";
 import {
   fetchAllUser,
@@ -23,22 +23,67 @@ const AdminDashboard = () => {
   };
 
   const renderRecords = (sortedRecords, key) => {
-    if (!sortedRecords || sortedRecords.length === 0) return null;
+    if (!sortedRecords || sortedRecords.length === 0 || records.length === 0)
+      return null;
     const topThreeRecords = sortedRecords.slice(0, 3);
 
     return topThreeRecords.map((record, index) => (
       <tr key={record._id}>
         <td>{index + 1}</td>
         <td>
-          {record.user.firstName} {record.user.middleName}
+          {record.user.firstName}
+          {record.user.middleName}
           {record.user.lastName}
         </td>
         <td>
           {key === "sleepDuration" ? formatDuration(record[key]) : record[key]}
         </td>
-        <td>{record.createdAt}</td>
+        <td>{formatDate(record.createdAt)}</td>
       </tr>
     ));
+  };
+
+  const calculateAverageBedtime = () => {
+    if (!records || records.length === 0) return "0";
+
+    let totalBedtimeMinutes = 0;
+    let totalUsers = 0;
+
+    records.forEach((record) => {
+      if (record.bedtime) {
+        const timeComponents = record.bedtime.split(" ");
+        const hourMinute = timeComponents[0].split(":");
+        const hour = parseInt(hourMinute[0]);
+        const minute = parseInt(hourMinute[1]);
+        const meridiem = timeComponents[1];
+
+        let bedtimeHour = hour;
+
+        if (meridiem === "pm" && hour < 12) {
+          bedtimeHour += 12;
+        }
+
+        totalBedtimeMinutes += bedtimeHour * 60 + minute;
+        totalUsers++;
+      }
+    });
+
+    const averageMinutes = totalBedtimeMinutes / totalUsers;
+    let averageHour = Math.floor(averageMinutes / 60);
+    const averageMinute = Math.floor(averageMinutes % 60);
+    let meridiem = "am";
+
+    // Convert to 12-hour format
+    if (averageHour >= 12) {
+      meridiem = "pm";
+      if (averageHour > 12) {
+        averageHour -= 12;
+      }
+    }
+
+    return `${averageHour}:${averageMinute.toString().padStart(2, "0")} ${
+      averageHour >= 12 ? "pm" : "am"
+    }`;
   };
 
   return (
@@ -56,7 +101,7 @@ const AdminDashboard = () => {
           <Analysis
             bgColor={"#007bff"}
             label={"Avg. Bedtime"}
-            analysis={"0"}
+            analysis={records ? calculateAverageBedtime() : 0}
             icon={"src/assets/image/total-sleep.png"}
           />
           <Analysis
@@ -76,15 +121,17 @@ const AdminDashboard = () => {
           <HighestData
             label={"Users with Highest Sleep Duration"}
             columnName={"Sleep Duration"}
-            displayData={renderRecords(
-              sortRecords("sleepDuration"),
-              "sleepDuration"
-            )}
+            displayData={
+              records &&
+              renderRecords(sortRecords("sleepDuration"), "sleepDuration")
+            }
           />
           <HighestData
             label={"Users with Highest Snore Count"}
             columnName={"Snore Count"}
-            displayData={renderRecords(sortRecords("snoreCount"), "snoreCount")}
+            displayData={
+              records && renderRecords(sortRecords("snoreCount"), "snoreCount")
+            }
           />
         </div>
         <div className="row mb-5">

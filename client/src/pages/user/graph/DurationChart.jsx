@@ -13,13 +13,13 @@ const DurationChart = () => {
   const { records } = fetchUserRecord();
   const [selectedWeek, setSelectedWeek] = useState(0);
   const [sleepData, setSleepData] = useState([
-    { day: "Mon", date: null, duration: 0, sleepDuration: 0 },
-    { day: "Tue", date: null, duration: 2, sleepDuration: 0 },
-    { day: "Wed", date: null, duration: 4, sleepDuration: 0 },
-    { day: "Thu", date: null, duration: 6, sleepDuration: 0 },
-    { day: "Fri", date: null, duration: 8, sleepDuration: 0 },
-    { day: "Sat", date: null, duration: 10, sleepDuration: 0 },
-    { day: "Sun", date: null, duration: 12, sleepDuration: 0 },
+    { day: "Mon", date: "", sleepDuration: 0 },
+    { day: "Tue", date: "", sleepDuration: 0 },
+    { day: "Wed", date: "", sleepDuration: 0 },
+    { day: "Thu", date: "", sleepDuration: 0 },
+    { day: "Fri", date: "", sleepDuration: 0 },
+    { day: "Sat", date: "", sleepDuration: 0 },
+    { day: "Sun", date: "", sleepDuration: 0 },
   ]);
 
   useEffect(() => {
@@ -90,7 +90,7 @@ const DurationChart = () => {
         <ResponsiveContainer width="100%" height={300}>
           <BarChart width={600} height={300} data={sleepData}>
             <XAxis dataKey="day" />
-            <YAxis dataKey="duration" />
+            <YAxis />
             <Tooltip
               formatter={(value, name, props) => [
                 `Hour: ${value}`,

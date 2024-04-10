@@ -34,6 +34,7 @@ const userSchema = mongoose.Schema({
   registered: {
     type: String,
     required: true,
+    default: new Date(),
   },
 
   role: { type: String, default: "User" },

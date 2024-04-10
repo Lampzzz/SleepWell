@@ -25,7 +25,7 @@ export const formatTimeInAMPM = (date) => {
   return `${hours}:${minutes.toString().padStart(2, "0")} ${period}`;
 };
 
-// determine seconds format
+// Determine seconds format
 export const formatSecond = (seconds) => {
   if (seconds < 60) {
     return seconds == 0 ? `${seconds}` : `${seconds}s`;
@@ -34,4 +34,29 @@ export const formatSecond = (seconds) => {
   } else {
     return `${Math.floor(seconds / 3600)}h`;
   }
+};
+
+// Convert into proper format date
+export const formatDate = (dateString) => {
+  const months = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
+  ];
+
+  const date = new Date(dateString);
+  const month = months[date.getMonth()];
+  const day = date.getDate().toString().padStart(2, "0");
+  const year = date.getFullYear();
+
+  return `${month} ${day}, ${year}`;
 };

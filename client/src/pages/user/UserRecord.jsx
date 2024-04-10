@@ -2,7 +2,7 @@ import { useState } from "react";
 import { PulseLoader } from "react-spinners";
 import UserNavbar from "./UserNavbar";
 import { fetchUserRecord } from "../../services/api/fetchUserRecord";
-import { formatDuration } from "../../utils/formatTime";
+import { formatDate, formatDuration } from "../../utils/formatTime";
 import { paginationData } from "../../utils/paginationData";
 import PaginationButton from "../../components/button/PaginationButton";
 import UserVideoModal from "./UserVideoModal";
@@ -56,7 +56,7 @@ const UserRecord = () => {
                 {displayedRecords.map((record, index) => (
                   <tr key={record._id} className="py-4">
                     <td>{startIndex + index + 1}</td>
-                    <td>{record.createdAt}</td>
+                    <td>{formatDate(record.createdAt)}</td>
                     <td>{record.bedtime}</td>
                     <td>{record.wakeUp}</td>
                     <td>{formatDuration(record.sleepDuration)}</td>
