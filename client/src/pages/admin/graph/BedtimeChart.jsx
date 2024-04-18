@@ -16,6 +16,7 @@ const BedtimeChart = () => {
   const { users } = fetchAllUser();
   const { records } = fetchAllRecord();
   const [selectedDate, setSelectedDate] = useState(new Date());
+  const [selectedUser, setSelectedUser] = useState("");
   const [bedtimeData, setBedtimeData] = useState([
     { bedTime: "12 am", users: 0 },
     { bedTime: "1 am", users: 0 },
@@ -53,15 +54,13 @@ const BedtimeChart = () => {
 
     const filteredRecords = records.filter((record) => {
       const recordDate = new Date(record.createdAt);
-      if (selectedDate) {
-        return (
-          recordDate.getFullYear() === selectedDate.getFullYear() &&
-          recordDate.getMonth() === selectedDate.getMonth() &&
-          recordDate.getDate() === selectedDate.getDate()
-        );
-      } else {
-        return false;
-      }
+      const matchDate =
+        recordDate.getFullYear() === selectedDate.getFullYear() &&
+        recordDate.getMonth() === selectedDate.getMonth() &&
+        recordDate.getDate() === selectedDate.getDate();
+      const matchUser = selectedUser === "" || record.user._id === selectedUser; // Check if record matches selected user
+
+      return matchDate && matchUser;
     });
 
     filteredRecords.forEach((record) => {
@@ -92,10 +91,14 @@ const BedtimeChart = () => {
     }));
 
     setBedtimeData(updatedCountData);
-  }, [records, selectedDate]);
+  }, [records, selectedDate, selectedUser]);
+
+  const handleUserChange = (e) => {
+    setSelectedUser(e.target.value); // Update selected user
+  };
 
   return (
-    <div className="col-12 col-lg-6 mb-5 mb-lg-0">
+    <div className="col-12 mb-5 mb-lg-0">
       <div className="shadow-sm p-3 rounded-3 bg-white">
         <div className="d-flex align-items-center justify-content-between border-0 mb-3">
           <h6>User Bedtime Summary</h6>
@@ -105,6 +108,21 @@ const BedtimeChart = () => {
               className="form-control text-black-50"
               onChange={(e) => setSelectedDate(new Date(e.target.value))}
             />
+            <select
+              className="form-select ms-3 shadow-none "
+              onChange={handleUserChange}
+              value={selectedUser}
+            >
+              <option value="">All Users</option>
+              {users
+                .slice()
+                .sort((a, b) => a.fullName.localeCompare(b.fullName))
+                .map((user) => (
+                  <option key={user._id} value={user._id}>
+                    {user.fullName}
+                  </option>
+                ))}
+            </select>
           </div>
         </div>
         <ResponsiveContainer width="100%" height={300}>

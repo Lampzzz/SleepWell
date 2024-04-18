@@ -1,15 +1,13 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { useRecordWebcam } from "react-record-webcam";
 import { toast } from "react-toastify";
 import UserNavbar from "./UserNavbar";
-import Webcam from "react-webcam";
 import SessionButton from "../../components/button/SessionButton";
 import { formatTimer, formatTimeInAMPM } from "../../utils/formatTime";
 import {
   useCreateRecordMutation,
   useRecordStatusMutation,
 } from "../../services/redux/api/recordApiSlice";
-import { fetchSnoreCount } from "../../services/api/fetchSnoreCount";
 
 const Session = () => {
   const {
@@ -22,24 +20,14 @@ const Session = () => {
     activeRecordings,
   } = useRecordWebcam();
 
-  useEffect(() => {
-    const delay = setTimeout(() => {
-      setWebcamReady(true);
-    }, 1000); // Delay of 1 second
-
-    return () => clearTimeout(delay);
-  }, []);
-
   const [createRecord, { isLoading }] = useCreateRecordMutation();
   const [recordStatus] = useRecordStatusMutation();
   const [record, setRecord] = useState(false);
-  const webcamRef = useRef(null);
   const [pause, setPause] = useState(false);
   const [webcamReady, setWebcamReady] = useState(false);
   const [timer, setTimer] = useState(0);
   const [startTime, setStartTime] = useState(null);
   const [recording, setRecording] = useState(null);
-  const { snore, setSnore } = fetchSnoreCount();
 
   // Duration
   useEffect(() => {
@@ -55,26 +43,37 @@ const Session = () => {
     return () => clearInterval(interval);
   }, [record, pause]);
 
-  const startRecord = async () => {
+  const handleOpenCamera = async () => {
     const newRecording = await createRecording();
-
-    // setTimeout(async () => {
-    //   await openCamera(newRecording.id);
-    // }, 100);
     await openCamera(newRecording.id);
-    await startRecording(newRecording.id);
     setRecording(newRecording);
-    setRecord(true);
-    setStartTime(new Date());
+    setWebcamReady(true);
+  };
+
+  const startRecord = async () => {
+    try {
+      // const newRecording = await createRecording();
+      await startRecording(recording.id);
+      // setRecording(newRecording);
+      setRecord(true);
+      setStartTime(new Date());
+    } catch (error) {
+      console.error("Error starting recording:", error);
+      toast.error("Failed to start recording.");
+    }
   };
 
   const handlePause = async () => {
-    if (!pause) {
-      await pauseRecording();
-      setPause(true);
-    } else {
-      await resumeRecording(recording.id);
-      setPause(false);
+    try {
+      if (pause) {
+        await resumeRecording(recording.id);
+      } else {
+        await pauseRecording();
+      }
+      setPause((prevPause) => !prevPause);
+    } catch (error) {
+      console.error("Error toggling pause:", error);
+      toast.error("Failed to pause recording.");
     }
   };
 
@@ -100,7 +99,6 @@ const Session = () => {
       setRecord(false);
       setPause(false);
       setTimer(0);
-      setWebcamReady(false);
     } catch (err) {
       console.error("Unexpected Error", err);
       toast.error(err.data);
@@ -117,9 +115,13 @@ const Session = () => {
             Begin recording your sleep session with one tap.
           </p>
         </div>
-        <div className="text-center">
-          {!record && <Webcam audio={false} ref={webcamRef} />}
-        </div>
+        {!webcamReady && (
+          <div className="text-center mt-5 pt-5">
+            <button className="btn btn-primary " onClick={handleOpenCamera}>
+              Open Camera
+            </button>
+          </div>
+        )}
         <div className="text-center">
           {webcamReady &&
             activeRecordings.map((recording) => (
@@ -130,26 +132,28 @@ const Session = () => {
           {record && (
             <div className="d-flex justify-content-center gap-5 mb-2 fs-5">
               <span>Sleep Duration: {formatTimer(timer)}</span>
-              <span>Snore Count: 0</span>
+              <span>Snore Count: </span>
             </div>
           )}
         </div>
-        <div className="text-center my-3">
-          {!record ? (
-            <SessionButton action={startRecord} label={"Start"} />
-          ) : (
-            <div className="d-flex align-items-center justify-content-center gap-3">
-              <div className="position-relative">
-                {pause ? (
-                  <SessionButton action={handlePause} label={"Resume"} />
-                ) : (
-                  <SessionButton action={handlePause} label={"Pause"} />
-                )}
+        {webcamReady && (
+          <div className="text-center my-3">
+            {!record ? (
+              <SessionButton action={startRecord} label={"play"} />
+            ) : (
+              <div className="d-flex align-items-center justify-content-center gap-3">
+                <div className="position-relative">
+                  {pause ? (
+                    <SessionButton action={handlePause} label={"play"} />
+                  ) : (
+                    <SessionButton action={handlePause} label={"pause"} />
+                  )}
+                </div>
+                <SessionButton action={stopRecord} label={"stop"} />
               </div>
-              <SessionButton action={stopRecord} label={"Stop"} />
-            </div>
-          )}
-        </div>
+            )}
+          </div>
+        )}
       </div>
     </>
   );
