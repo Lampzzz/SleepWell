@@ -1,7 +1,7 @@
 import { toast } from "react-toastify";
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
 // Component
 import Input from "../../components/form/Input";
@@ -25,7 +25,6 @@ const OTPVerification = () => {
     otp: "",
   };
 
-  const dispatch = useDispatch();
   const navigate = useNavigate();
   const { userInfo } = useSelector((state) => state.auth);
   const [verifyOTP, { isLoading }] = useVerifyOTPMutation();
@@ -82,20 +81,21 @@ const OTPVerification = () => {
     e.preventDefault();
 
     try {
-      const response = await verifyOTP(auth).unwrap();
-      dispatch(setCredentials({ ...response }));
+      await verifyOTP(auth).unwrap();
       toast.success("User Created Successfully");
       navigate("/login");
     } catch (err) {
-      const responseError = err.data;
+      const responseError = err?.data;
       if (responseError && responseError.errors) {
         const serverErrors = responseError.errors.reduce((acc, curr) => {
           acc[curr.field] = curr.message;
           return acc;
         }, {});
         setValidationErrors(serverErrors);
-      } else {
+      } else if (responseError && responseError.errorMessage) {
         toast.error(responseError.errorMessage);
+      } else {
+        toast.error("An error occurred while verifying OTP.");
       }
     }
   };
@@ -111,8 +111,8 @@ const OTPVerification = () => {
     } finally {
       let seconds = 60;
       const interval = setInterval(() => {
-        setCountdown(seconds);
         seconds--;
+        setCountdown(seconds);
 
         if (seconds < 0) {
           setIsResendDisabled(false);
@@ -149,7 +149,7 @@ const OTPVerification = () => {
               </div>
               <div className="text-center">
                 <ButtonAction
-                  style={"text-black-50 btn btn__disabled"}
+                  style={"text-black-50 btn border-1"}
                   type={"button"}
                   handleClick={handleResend}
                   label={

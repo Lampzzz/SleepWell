@@ -58,7 +58,7 @@ const BedtimeChart = () => {
         recordDate.getFullYear() === selectedDate.getFullYear() &&
         recordDate.getMonth() === selectedDate.getMonth() &&
         recordDate.getDate() === selectedDate.getDate();
-      const matchUser = selectedUser === "" || record.user._id === selectedUser; // Check if record matches selected user
+      const matchUser = selectedUser === "" || record.user._id === selectedUser;
 
       return matchDate && matchUser;
     });
@@ -94,7 +94,7 @@ const BedtimeChart = () => {
   }, [records, selectedDate, selectedUser]);
 
   const handleUserChange = (e) => {
-    setSelectedUser(e.target.value); // Update selected user
+    setSelectedUser(e.target.value);
   };
 
   return (
@@ -116,10 +116,14 @@ const BedtimeChart = () => {
               <option value="">All Users</option>
               {users
                 .slice()
-                .sort((a, b) => a.fullName.localeCompare(b.fullName))
+                .sort((a, b) => {
+                  const fullNameA = `${a.firstName} ${a.middleName} ${a.lastName}`;
+                  const fullNameB = `${b.firstName} ${b.middleName} ${b.lastName}`;
+                  return fullNameA.localeCompare(fullNameB);
+                })
                 .map((user) => (
                   <option key={user._id} value={user._id}>
-                    {user.fullName}
+                   {user.firstName} {user.middleName} {user.lastName}
                   </option>
                 ))}
             </select>

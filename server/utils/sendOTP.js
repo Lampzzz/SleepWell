@@ -2,7 +2,6 @@ import bcrypt from "bcryptjs";
 import OTP from "../models/otpModel.js";
 import sendEmail from "./sendEmail.js";
 import errorHandler from "./errorHandler.js";
-import User from "../models/userModel.js";
 
 const sendOTP = async (data, res) => {
   try {

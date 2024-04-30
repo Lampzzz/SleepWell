@@ -155,26 +155,16 @@ const verifyOTP = async (req, res) => {
         }
 
         await OTP.deleteMany({ email });
-        const newUser = await User.create({
+        await User.create({
           firstName,
           lastName,
           middleName: middleName ? middleName : "",
-          fullName: `${firstName} ${middleName ? middleName : ""} ${lastName}`,
           email,
           passwordHash,
           avatar: "default.jpg",
         });
 
-        res.status(200).json({
-          id: newUser._id,
-          firstName: newUser.firstName,
-          lastName: newUser.lastName,
-          middleName: newUser.middleName,
-          email: newUser.email,
-          avatar: newUser.avatar,
-          role: newUser.role,
-          registered: newUser.registered,
-        });
+        res.status(200).send();
       }
     }
   } catch (err) {

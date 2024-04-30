@@ -30,8 +30,3 @@
 .form-control.error {
   border: 1px solid red !important;
 }
-
-/* Disable */
-.btn__disabled {
-  border: none;
-}
