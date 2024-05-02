@@ -1,6 +1,6 @@
-import step1 from "@Assets/image/step1.jpg";
-import step2 from "@Assets/image/step2.jpg";
-import step3 from "@Assets/image/step3.jpg";
+import step1 from "assets/image/step1.jpg";
+import step2 from "assets/image/step2.jpg";
+import step3 from "assets/image/step3.jpg";
 
 const HowItWorks = () => {
   return (
