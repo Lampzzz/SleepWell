@@ -18,7 +18,7 @@ const PORT = process.env.PORT || 3000;
 // Database Connection
 connection();
 
-// Root route
+// Sample Display
 app.get("/", (req, res) => {
   res.send("Hello, World!");
 });
