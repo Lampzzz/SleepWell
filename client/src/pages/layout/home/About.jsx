@@ -1,4 +1,5 @@
 import ButtonLink from "../../../components/button/ButtonLink";
+import aboutImage from "../../../assets/image/about--img.png";
 
 const About = () => {
   const imgSize = {
@@ -10,11 +11,7 @@ const About = () => {
     <div className="container-fluid py-5 bg-white " id="about">
       <div className="row justify-content-center align-items-center">
         <div className="col-md-6 col-lg-5 order-md-1 order-1 text-center mb-3 mb-lg-0">
-          <img
-            src="src/assets/image/about--img.png"
-            alt="about us image"
-            style={imgSize}
-          />
+          <img src={aboutImage} alt="about us image" style={imgSize} />
         </div>
         <div className="col-md-6 col-lg-5 order-2 order-md-2 px-5 px-md-0">
           <h2 className="mb-3">Welcome to SleepWell</h2>
