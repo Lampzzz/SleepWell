@@ -27,16 +27,21 @@ app.get("/", (req, res) => {
 app.use(express.json());
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: false }));
-app.use(
-  cors({
-    origin: [
-      "http://localhost:5174",
-      "http://localhost:5173",
-      "https://sleepwell-frontend.vercel.app",
-    ],
-    credentials: true,
-  })
-);
+
+// CORS middleware configuration
+const corsOptions = {
+  origin: [
+    "http://localhost:5174",
+    "http://localhost:5173",
+    "https://sleepwell-frontend.vercel.app",
+  ],
+  credentials: true,
+};
+
+app.use(cors(corsOptions));
+
+// Additional handling for preflight requests
+app.options("*", cors(corsOptions));
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 app.use("/images", express.static(path.join(__dirname, "upload/images")));
