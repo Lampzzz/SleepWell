@@ -1,5 +1,5 @@
 import ButtonLink from "../../../components/button/ButtonLink";
-import aboutImage from "../../../assets/image/about--img.png";
+import aboutImage from "assets/image/about--img.png";
 
 const About = () => {
   const imgSize = {
