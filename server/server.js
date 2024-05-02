@@ -18,7 +18,12 @@ const PORT = process.env.PORT || 3000;
 // Database Connection
 connection();
 
-// middleware
+// Sample Display
+app.get("/", (req, res) => {
+  res.send("Hello, World!");
+});
+
+// Middleware
 app.use(express.json());
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: false }));
