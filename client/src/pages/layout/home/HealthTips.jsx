@@ -2,6 +2,11 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 
+import image1 from "assets/image/tip--1.jpg";
+import image2 from "assets/image/tip--2.jpg";
+import image3 from "assets/image/tip--3.jpg";
+import image4 from "assets/image/tip--4.jpg";
+
 const HealthTips = () => {
   const settings = {
     infinite: true,
@@ -35,24 +40,24 @@ const HealthTips = () => {
 
   const tips = [
     {
-      image: "src/assets/image/tip--1.jpg",
+      image: image1,
       title: "Establish a Relaxing Pre-Sleep Routine",
       description: `Wind down before bedtime with calming activities like reading or
       practicing mindfulness to promote a restful night's sleep.`,
     },
     {
-      image: "src/assets/image/tip--2.jpg",
+      image: image2,
       title: "Maintain a Consistent Sleep Schedule",
       description: `Stick to a regular sleep-wake cycle to regulate your body's
       internal clock, optimizing sleep quality and overall well-being.`,
     },
     {
-      image: "src/assets/image/tip--3.jpg",
+      image: image3,
       title: "Limit Screen Time Before Bed",
       description: `Reduce screen exposure an hour before bedtime to improve sleep by minimizing the impact of blue light on melatonin production and fostering a conducive environment for rest.`,
     },
     {
-      image: "src/assets/image/tip--4.jpg",
+      image: image4,
       title: "Create a Comfortable Sleep Environment",
       description: `Optimize sleep quality with a cool, quiet, and comfortable
     environment, including a supportive mattress and minimal light.`,
