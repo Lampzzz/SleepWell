@@ -2,10 +2,16 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 
-import image1 from "assets/image/tip--1.jpg";
-import image2 from "assets/image/tip--2.jpg";
-import image3 from "assets/image/tip--3.jpg";
-import image4 from "assets/image/tip--4.jpg";
+// import image1 from "assets/image/tip--1.jpg";
+// import image2 from "assets/image/tip--2.jpg";
+// import image3 from "assets/image/tip--3.jpg";
+// import image4 from "assets/image/tip--4.jpg";
+
+// Deployment
+import image1 from "../../../assets/image/tip--1.jpg";
+import image2 from "../../../assets/image/tip--2.jpg";
+import image3 from "../../../assets/image/tip--3.jpg";
+import image4 from "../../../assets/image/tip--4.jpg";
 
 const HealthTips = () => {
   const settings = {
