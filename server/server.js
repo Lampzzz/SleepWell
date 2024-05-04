@@ -18,22 +18,13 @@ const PORT = process.env.PORT || 3000;
 // Database Connection
 connection();
 
-// Root route
-app.get("/", (req, res) => {
-  res.send("Hello, World!");
-});
-
-// Middleware
+// middleware
 app.use(express.json());
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: false }));
 app.use(
   cors({
-    origin: [
-      "http://localhost:5174",
-      "http://localhost:5173",
-      "https://sleepwell-frontend.vercel.app",
-    ],
+    origin: ["http://localhost:5174", ["http://localhost:5173"]],
     credentials: true,
   })
 );

@@ -55,43 +55,65 @@ const Session = () => {
   }, [record, pause]);
 
   const startRecord = async () => {
-    await startRecording(recording.id);
-    setRecord(true);
-    setStartTime(new Date());
+    const response = await recordStatus({ recordStatus: "start" }).unwrap();
+
+    try {
+      if (!response.status) {
+        throw new Error("Failed to connect");
+      }
+
+      await startRecording(recording.id);
+      setRecord(true);
+      setStartTime(new Date());
+    } catch (err) {
+      console.log("Error", err.message);
+    }
   };
 
   const handlePause = async () => {
-    if (!pause) {
-      await pauseRecording();
-      setPause(true);
-    } else {
-      await resumeRecording(recording.id);
-      setPause(false);
+    try {
+      const response = await recordStatus({
+        recordStatus: pause ? "start" : "pause",
+      }).unwrap();
+
+      if (!response.status) {
+        await pauseRecording();
+        setPause(true);
+      } else {
+        await resumeRecording(recording.id);
+        setPause(false);
+      }
+    } catch (err) {
+      console.log(err.message);
     }
   };
 
   const stopRecord = async () => {
     try {
-      const recorded = await stopRecording(recording.id);
-      const currentTime = new Date();
-      const bedtime = formatTimeInAMPM(startTime);
-      const wakeUp = formatTimeInAMPM(currentTime);
-      const snoreCount = 0;
+      const response = await recordStatus({ recordStatus: "stop" }).unwrap();
 
-      const formData = new FormData();
-      formData.append("bedtime", bedtime);
-      formData.append("wakeUp", wakeUp);
-      formData.append("sleepDuration", timer);
-      formData.append("snoreCount", snoreCount);
-      formData.append("video", recorded.blob, "session.webm");
+      if (!response.status) {
+        const recorded = await stopRecording(recording.id);
+        const currentTime = new Date();
+        const bedtime = formatTimeInAMPM(startTime);
+        const wakeUp = formatTimeInAMPM(currentTime);
+        const snoreCount = 0;
 
-      await createRecord(formData).unwrap();
-      toast.success("Record Successfully");
+        const formData = new FormData();
+        formData.append("bedtime", bedtime);
+        formData.append("wakeUp", wakeUp);
+        formData.append("sleepDuration", timer);
+        formData.append("snoreCount", response.snoreCount);
+        formData.append("video", recorded.blob, "session.webm");
 
-      setRecord(false);
-      setPause(false);
-      setTimer(0);
-      setWebcamReady(false);
+        await createRecord(formData).unwrap();
+        toast.success("Record Successfully");
+
+        setRecord(false);
+        setPause(false);
+        setTimer(0);
+        setWebcamReady(false);
+      }
     } catch (err) {
       console.error("Unexpected Error", err);
       toast.error(err.data);
@@ -117,7 +139,7 @@ const Session = () => {
           {record && (
             <div className="d-flex justify-content-center gap-5 mb-2 fs-5">
               <span>Sleep Duration: {formatTimer(timer)}</span>
-              <span>Snore Count: 0</span>
+              <span>Snore Count: {snore}</span>
             </div>
           )}
         </div>
