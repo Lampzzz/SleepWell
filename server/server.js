@@ -43,3 +43,7 @@ app.use("/super-admin", superAdminRoute);
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
+
+app.get("/testing", (req, res) => {
+  res.send("Hello World");
+});
