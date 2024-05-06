@@ -12,11 +12,7 @@ const Navbar = () => {
         id="navbar"
       >
         <div className="container-fluid">
-          <img
-            src="../../../assets/image/logo.png"
-            alt="Website Logo"
-            id="logo"
-          />
+          <img src="src/assets/image/logo.png" alt="Website Logo" id="logo" />
           <button
             className="navbar-toggler navbar__btn"
             type="button"
