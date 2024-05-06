@@ -1,9 +1,6 @@
 import { RxHamburgerMenu } from "react-icons/rx";
-
-// Component
 import NavbarLink from "./NavbarLink";
 import ButtonLink from "../button/ButtonLink";
-
 import logo from "../../assets/image/logo.png";
 
 const Navbar = () => {
