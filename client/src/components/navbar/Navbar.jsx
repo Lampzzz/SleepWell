@@ -4,6 +4,8 @@ import { RxHamburgerMenu } from "react-icons/rx";
 import NavbarLink from "./NavbarLink";
 import ButtonLink from "../button/ButtonLink";
 
+import logo from "../../assets/image/logo.png";
+
 const Navbar = () => {
   return (
     <>
@@ -12,7 +14,7 @@ const Navbar = () => {
         id="navbar"
       >
         <div className="container-fluid">
-          <img src="src/assets/image/logo.png" alt="Website Logo" id="logo" />
+          <img src={logo} alt="Website Logo" id="logo" />
           <button
             className="navbar-toggler navbar__btn"
             type="button"
