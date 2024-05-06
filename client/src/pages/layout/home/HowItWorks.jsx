@@ -1,3 +1,7 @@
+import step1 from "../../../assets/image/step1.jpgs";
+import step2 from "../../../assets/image/step2.jpgs";
+import step3 from "../../../assets/image/step3.jpgs";
+
 const HowItWorks = () => {
   return (
     <div className="container-fluid py-5 bg-white" id="works">
@@ -21,22 +25,14 @@ const HowItWorks = () => {
           </div>
           <div className="col-12 col-lg-5 mx-auto order-1 order-lg-2 mb-3 mb-lg-0">
             <div className="d-flex justify-content-center">
-              <img
-                src="src/assets/image/step1.jpg"
-                className="rounded-4"
-                alt=""
-              />
+              <img src={step1} className="rounded-4" alt="" />
             </div>
           </div>
         </div>
         <div className="row mb-5 d-flex align-items-center">
           <div className="col-12 col-lg-5 mx-auto mb-3 mb-lg-0">
             <div className="d-flex justify-content-center">
-              <img
-                src="src/assets/image/step2.jpg"
-                className="rounded-4"
-                alt=""
-              />
+              <img src={step2} className="rounded-4" alt="" />
             </div>
           </div>
           <div className="col-12 col-lg-5 mx-auto">
@@ -66,11 +62,7 @@ const HowItWorks = () => {
           </div>
           <div className="col-12 col-lg-5 mx-auto order-1 order-lg-2 mb-3 mb-lg-0">
             <div className="d-flex justify-content-center">
-              <img
-                src="src/assets/image/step3.jpg"
-                className="rounded-4"
-                alt=""
-              />
+              <img src={step3} className="rounded-4" alt="" />
             </div>
           </div>
         </div>
