@@ -8,7 +8,7 @@ const Analysis = ({ bgColor, label, analysis, icon }) => {
             style={{ backgroundColor: bgColor }}
           >
             <img
-              src={`/${icon}`}
+              src={icon}
               alt={label}
               style={{ width: "30px", height: "30px" }}
             />
