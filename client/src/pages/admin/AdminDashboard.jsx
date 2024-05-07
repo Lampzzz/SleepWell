@@ -9,6 +9,9 @@ import {
   fetchAllAdmin,
   fetchAllRecord,
 } from "../../services/api/fetchAllData";
+import totalSleepIcon from "../../assets/image/total-sleep.png";
+import adminIcon from "../../assets/image/admin.png";
+import userIcon from "../../assets/image/user.png";
 
 const AdminDashboard = () => {
   const { user } = fetchUserDetail();
@@ -102,19 +105,19 @@ const AdminDashboard = () => {
             bgColor={"#007bff"}
             label={"Avg. Bedtime"}
             analysis={records ? calculateAverageBedtime() : 0}
-            icon={"src/assets/image/total-sleep.png"}
+            icon={totalSleepIcon}
           />
           <Analysis
             bgColor={"#58B05C"}
             label={"Total User"}
             analysis={users ? users.length : 0}
-            icon={"src/assets/image/user.png"}
+            icon={userIcon}
           />
           <Analysis
             bgColor={"#DC3545"}
             label={"Total Admin"}
             analysis={admins ? admins.length : 0}
-            icon={"src/assets/image/admin.png"}
+            icon={adminIcon}
           />
         </div>
         <div className="row mb-5">
