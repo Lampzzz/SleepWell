@@ -1,10 +1,14 @@
-import UserNavbar from "./UserNavbar";
-import Overview from "../../components/dashboard/Overview";
 import { formatSecond } from "../../utils/formatTime";
 import { fetchUserDetail } from "../../services/api/fetchUserDetail";
 import { fetchUserRecord } from "../../services/api/fetchUserRecord";
+import UserNavbar from "./UserNavbar";
 import DurationChart from "./graph/DurationChart";
 import SnoreChart from "./graph/SnoreChart";
+import avgSleepIcon from "../../assets/image/avg-sleep.png";
+import avgSnoreIcon from "../../assets/image/avg-snore.png";
+import totalSleepIcon from "../../assets/image/total-sleep.png";
+import totalSnoreIcon from "../../assets/image/total-snore.png";
+import Analysis from "../../components/dashboard/Analysis";
 
 const UserDashboard = () => {
   const { user } = fetchUserDetail();
@@ -35,29 +39,29 @@ const UserDashboard = () => {
           </p>
         </div>
         <div className="row mb-5">
-          <Overview
+          <Analysis
             bgColor={"#007bff"}
             label={"Avg. Sleep Duration"}
             analysis={avgDuration ? formatSecond(avgDuration) : 0}
-            icon={"avg-sleep.png"}
+            icon={avgSleepIcon}
           />
-          <Overview
+          <Analysis
             bgColor={"#58B05C"}
             label={"Avg. Snore Count"}
             analysis={avgSnore ? avgSnore : 0}
-            icon={"avg-snore.png"}
+            icon={avgSnoreIcon}
           />
-          <Overview
+          <Analysis
             bgColor={"#DC3545"}
             label={"Total Sleep Duration"}
             analysis={totalDuration ? formatSecond(totalDuration) : 0}
-            icon={"total-sleep.png"}
+            icon={totalSleepIcon}
           />
-          <Overview
+          <Analysis
             bgColor={"#FFC107"}
             label={"Total Snore Count"}
             analysis={totalCount ? totalCount : 0}
-            icon={"total-snore.png"}
+            icon={totalSnoreIcon}
           />
         </div>
         <div className="row mb-5">

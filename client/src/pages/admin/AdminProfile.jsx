@@ -97,7 +97,7 @@ const AdminProfile = () => {
                 src={
                   user.image
                     ? URL.createObjectURL(user.image)
-                    : `http://localhost:3000/images/${user.avatar}`
+                    : `https://sleepwell-server.vercel.app/images/${user.avatar}`
                 }
                 handleChange={handleChange}
               />

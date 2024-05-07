@@ -4,6 +4,7 @@ import { fetchUserDetail } from "../../services/api/fetchUserDetail";
 import ProfileLink from "../../components/navbar/ProfileLink";
 import NavbarLink from "../../components/navbar/NavbarLink";
 import Logout from "../../components/dashboard/Logout";
+import logo from "../../assets/image/logo.png";
 
 const UserNavbar = () => {
   const { user } = fetchUserDetail();
@@ -23,11 +24,7 @@ const UserNavbar = () => {
           >
             <RxHamburgerMenu className="navbar-toggler-icon" />
           </button>
-          <img
-            src="../../src/assets/image/logo.png"
-            alt="Website Logo"
-            id="logo"
-          />
+          <img src={logo} alt="Website Logo" id="logo" />
           <div className="collapse navbar-collapse">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0 mx-auto gap-3">
               <NavbarLink link="/user/dashboard" label="Dashboard" />
@@ -43,7 +40,7 @@ const UserNavbar = () => {
               style={{ cursor: "pointer" }}
             >
               <img
-                src={`http://localhost:3000/images/${user.avatar}`}
+                src={`https://sleepwell-server.vercel.app/images/${user.avatar}`}
                 style={{ width: "45px", height: "45px" }}
                 className="rounded-circle me-2"
               />
