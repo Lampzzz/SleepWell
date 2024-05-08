@@ -12,6 +12,8 @@ const generateToken = (
 
   res.cookie(cookieName, token, {
     httpOnly: true,
+    secure: true,
+    sameSite: "none",
     maxAge: expiration,
   });
 
