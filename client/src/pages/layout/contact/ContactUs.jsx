@@ -72,7 +72,7 @@ const ContactUs = () => {
                     type={"text"}
                     name={"fullName"}
                     value={contact.fullName}
-                    onChange={handleChange}
+                    handleChange={handleChange}
                     required={true}
                   />
                 </div>
@@ -82,7 +82,7 @@ const ContactUs = () => {
                     type={"text"}
                     name={"email"}
                     value={contact.email}
-                    onChange={handleChange}
+                    handleChange={handleChange}
                     required={true}
                   />
                 </div>
@@ -92,7 +92,7 @@ const ContactUs = () => {
                     type={"text"}
                     name={"email"}
                     value={contact.phoneNumber}
-                    onChange={handleChange}
+                    handleChange={handleChange}
                     required={true}
                   />
                 </div>
