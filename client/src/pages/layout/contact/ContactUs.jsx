@@ -90,7 +90,7 @@ const ContactUs = () => {
                   <label htmlFor="phoneNumber">Phone Number</label>
                   <Input
                     type={"text"}
-                    name={"email"}
+                    name={"phoneNumber"}
                     value={contact.phoneNumber}
                     handleChange={handleChange}
                     required={true}
