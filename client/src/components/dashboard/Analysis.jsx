@@ -1,7 +1,7 @@
 const Analysis = ({ bgColor, label, analysis, icon }) => {
   return (
     <div className="col-12 col-md-5 col-lg-3 mb-5 mb-lg-0">
-      <div className="shadow-sm position-relative bg-white rounded-3 px-3 py-2">
+      <div className="shadow-sm position-relative bg-white rounded-3 px-3 py-4">
         <div className="d-flex justify-content-end">
           <div
             className="dashboard__icon p-3"
