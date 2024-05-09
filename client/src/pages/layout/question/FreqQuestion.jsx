@@ -45,8 +45,8 @@ const FreqQuestion = () => {
   return (
     <>
       <Navbar />
-      <div className="container-fluid banenr py-5 banner d-flex align-items-center">
-        <div className="banner__content">
+      <div className="container-fluid py-5 d-flex align-items-center bg-light">
+        <div className="px-5">
           <h1>FAQ</h1>
           <div className="d-flex">
             <Link to="/" className="text-black-50 text-decoration-none">

@@ -27,7 +27,7 @@ const Features = () => {
   ];
 
   return (
-    <div className="container-fluid p-5 bg-white" id="features">
+    <div className="container-fluid px-5 bg-white" id="features">
       <div className="text-center mb-5">
         <h2>Features</h2>
         <p>

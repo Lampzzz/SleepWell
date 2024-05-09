@@ -21,7 +21,6 @@
 }
 
 .wrapper {
-  /* border: 1px solid #dee2e6; */
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
   overflow-y: auto;
   position: relative;
@@ -29,4 +28,14 @@
 
 .form-control.error {
   border: 1px solid red !important;
+}
+
+@media only screen and (max-width: 768px) {
+  .auth {
+    background-color: white;
+  }
+
+  .wrapper {
+    box-shadow: none;
+  }
 }

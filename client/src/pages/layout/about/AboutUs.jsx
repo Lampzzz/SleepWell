@@ -8,8 +8,8 @@ const AboutUs = () => {
   return (
     <>
       <Navbar />
-      <div className="container-fluid py-5 banner d-flex align-items-center">
-        <div className="banner__content">
+      <div className="container-fluid py-5 d-flex align-items-center bg-light ">
+        <div className="px-5">
           <h1>About Us</h1>
           <div className="d-flex">
             <Link to="/" className="text-black-50 text-decoration-none">
@@ -59,8 +59,8 @@ const AboutUs = () => {
         </div>
       </div>
 
-      <Features />
       <HowItWorks />
+      <Features />
       <Footer />
     </>
   );

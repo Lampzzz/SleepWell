@@ -8,14 +8,14 @@ const About = () => {
   };
 
   return (
-    <div className="container-fluid py-5 bg-white " id="about">
+    <div className="container-fluid px-5 bg-white " id="about">
       <div className="row justify-content-center align-items-center">
         <div className="col-md-6 col-lg-5 order-md-1 order-1 text-center mb-3 mb-lg-0">
           <img src={aboutImg} alt="about us image" style={imgSize} />
         </div>
         <div className="col-md-6 col-lg-5 order-2 order-md-2 px-5 px-md-0">
           <h2 className="mb-3">Welcome to SleepWell</h2>
-          <p className="mb-3">
+          <p className="mb-3 text-black-50 ">
             SleepWell redefines sleep monitoring with an Arduino-based system
             that includes video recording, snore detection, and detailed
             analytics for a comprehensive understanding of your sleep health.

@@ -65,7 +65,7 @@ const HealthTips = () => {
   ];
 
   return (
-    <div className="container-fluid py-5 bg-light " id="tips">
+    <div className="container-fluid px-5 bg-white " id="tips">
       <div className="text-center mb-5">
         <h2>Health Tips</h2>
         <p>Discover expert tips for better sleep and overall well-being</p>
@@ -79,7 +79,7 @@ const HealthTips = () => {
                 <div className="overflow-hidden rounded-top-4  ">
                   <img src={tip.image} className="card-img-top" />
                 </div>
-                <div className="card-body rounded-bottom-4 ">
+                <div className="card-body bg-light rounded-bottom-4 ">
                   <h5 className="card-title">{tip.title}</h5>
                   <small className="card-text">{tip.description}</small>
                 </div>

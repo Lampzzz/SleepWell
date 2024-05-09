@@ -38,8 +38,8 @@ const ContactUs = () => {
   return (
     <>
       <Navbar />
-      <div className="container-fluid d-flex align-items-center banner py-5">
-        <div className="banner__content">
+      <div className="container-fluid py-5 d-flex align-items-center bg-light ">
+        <div className="px-5">
           <h1>Contact</h1>
           <div className="d-flex">
             <Link to="/" className="text-black-50 text-decoration-none">
