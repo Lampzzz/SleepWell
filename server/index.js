@@ -11,6 +11,7 @@ import userRoute from "./routes/userRoute.js";
 import adminRoutes from "./routes/adminRoute.js";
 import recordRoutes from "./routes/recordRoute.js";
 import superAdminRoute from "./routes/superAdminRoute.js";
+import reminderRoute from "./routes/reminderRoute.js";
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -39,6 +40,7 @@ app.use("/user", userRoute);
 app.use("/admin", adminRoutes);
 app.use("/record", recordRoutes);
 app.use("/super-admin", superAdminRoute);
+app.use("/reminder", reminderRoute);
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);

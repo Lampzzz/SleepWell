@@ -49,6 +49,7 @@ import Session from "./pages/user/Session";
 import UserRecord from "./pages/user/UserRecord";
 import UserProfile from "./pages/user/UserProfile";
 import UserPassword from "./pages/user/UserPassword";
+import UserReminder from "./pages/user/UserReminder";
 
 // Super Admin
 import AdminAccount from "./pages/super/AdminAccount";
@@ -86,6 +87,7 @@ const router = createBrowserRouter(
         <Route path="record" element={<UserRecord />} />
         <Route path="profile" element={<UserProfile />} />
         <Route path="password" element={<UserPassword />} />
+        <Route path="reminder" element={<UserReminder />} />
       </Route>
 
       <Route path="/super" element={<SuperRoute />}>

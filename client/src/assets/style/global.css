@@ -108,7 +108,10 @@ textarea {
   transition: all 0.2s linear;
 }
 
-/* Image size */
+/* Reminder Arrow */
+.reminder__arrow {
+  cursor: pointer;
+}
 
 /* Small */
 @media only screen and (max-width: 768px) {

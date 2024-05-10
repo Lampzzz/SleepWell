@@ -1,4 +1,4 @@
-import { USER_URL } from "../../../data/endpoint";
+import { USER_URL, REMINDER_URL } from "../../../data/endpoint";
 import { apiSlice } from "./apiSlice";
 
 export const userApiSlice = apiSlice.injectEndpoints({
@@ -43,6 +43,22 @@ export const userApiSlice = apiSlice.injectEndpoints({
         body: data,
       }),
     }),
+
+    createReminder: builder.mutation({
+      query: (data) => ({
+        url: `${REMINDER_URL}/time`,
+        method: "POST",
+        body: data,
+      }),
+    }),
+
+    getReminder: builder.query({
+      query: () => ({
+        url: `${REMINDER_URL}/get`,
+        method: "GET",
+      }),
+      invalidatesTags: ["User"],
+    }),
   }),
 });
 
@@ -52,4 +68,6 @@ export const {
   useUpdatePasswordMutation,
   useGetDetailsQuery,
   useSendContactMutation,
+  useCreateReminderMutation,
+  useGetReminderQuery,
 } = userApiSlice;

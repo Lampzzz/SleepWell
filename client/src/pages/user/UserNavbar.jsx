@@ -5,6 +5,7 @@ import ProfileLink from "../../components/navbar/ProfileLink";
 import NavbarLink from "../../components/navbar/NavbarLink";
 import Logout from "../../components/dashboard/Logout";
 import logo from "../../assets/image/logo.png";
+import ReminderLink from "../../components/navbar/ReminderLink";
 
 const UserNavbar = () => {
   const { user } = fetchUserDetail();
@@ -61,6 +62,7 @@ const UserNavbar = () => {
               aria-labelledby="userDropdown"
             >
               <ProfileLink to="/user/profile" />
+              <ReminderLink to="/user/reminder" />
               <Logout />
             </ul>
           </div>
