@@ -5,8 +5,8 @@
 // export const RECORD_URL = "http://localhost:3000/record";
 // export const SUPER_URL = "http://localhost:3000/super-admin";
 // export const REMINDER_URL = "http://localhost:3000/reminder";
-export const STATUS_URL = "https://192.168.1.9/record";
-export const SNORE_URL = "https://192.168.1.9/snore";
+export const STATUS_URL = "http://192.168.1.9/record";
+export const SNORE_URL = "http://192.168.1.9/snore";
 
 // Host Link
 export const BASE_URL = "https://sleepwell-server.vercel.app";
