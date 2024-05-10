@@ -162,7 +162,8 @@ const verifyOTP = async (req, res) => {
           middleName: middleName ? middleName : "",
           email,
           passwordHash,
-          avatar: "default.jpg",
+          avatar:
+            "https://res.cloudinary.com/dgpjm3auu/image/upload/v1715363253/image/default_zdiya9.jpg",
         });
 
         res.status(200).send();

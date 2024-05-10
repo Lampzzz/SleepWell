@@ -92,7 +92,6 @@ const EditUserAccount = () => {
     validateField(e.target.name, e.target.value);
   };
 
-  // Change data and Error when change
   const handleChange = (e) => {
     if (e.target.name === "image") {
       setUser({ ...user, image: e.target.files[0] });
@@ -147,11 +146,7 @@ const EditUserAccount = () => {
           <div className="col-12 col-md-8 col-lg-6 mx-auto">
             <form onSubmit={handleSubmit}>
               <Avatar
-                src={
-                  user.image
-                    ? URL.createObjectURL(user.image)
-                    : `http://localhost:3000/images/${user.avatar}`
-                }
+                src={user.image ? URL.createObjectURL(user.image) : user.avatar}
                 handleChange={handleChange}
               />
               <div className="row mb-2">

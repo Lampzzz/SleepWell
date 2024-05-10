@@ -96,7 +96,16 @@ const updateUserAccount = async (req, res) => {
     user.lastName = lastName || user.lastName;
     user.middleName = middleName !== undefined ? middleName : "";
     user.email = email || user.email;
-    user.avatar = req.file ? req.file.filename : user.avatar;
+
+    if (req.file) {
+      const result = await cloudinary.uploader.upload(req.file.path, {
+        folder: "image",
+        public_id: `${user._id}_avatar`,
+        overwrite: true,
+      });
+
+      user.avatar = result.secure_url;
+    }
 
     if (password) {
       const hashedPassword = await bcrypt.hash(password, 10);

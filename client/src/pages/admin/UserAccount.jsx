@@ -102,10 +102,10 @@ const UserAccount = () => {
                     <td>{startIndex + index + 1}</td>
                     <td>
                       <img
-                        src={`https://sleepwell-server.vercel.app/images/${user.avatar}`}
+                        src={user.avatar}
                         style={{ width: "40px", height: "40px" }}
                         className="rounded-circle me-2"
-                        alt={`Avatar of ${user.firstName} ${user.lastName}`}
+                        alt={`${user.firstName} ${user.lastName}`}
                       />
                     </td>
                     <td>

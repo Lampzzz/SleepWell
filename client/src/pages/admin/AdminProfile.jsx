@@ -94,11 +94,7 @@ const AdminProfile = () => {
           <div className="col-12 col-md-8 col-lg-6 mx-auto">
             <form onSubmit={handleSubmit}>
               <Avatar
-                src={
-                  user.image
-                    ? URL.createObjectURL(user.image)
-                    : `https://sleepwell-server.vercel.app/images/${user.avatar}`
-                }
+                src={user.image ? URL.createObjectURL(user.image) : user.avatar}
                 handleChange={handleChange}
               />
               <div className="row mb-2">

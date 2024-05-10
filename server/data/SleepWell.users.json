@@ -1,0 +1,58 @@
+[
+  {
+    "_id": {
+      "$oid": "65d405dfe09c27ab323968df"
+    },
+    "firstName": "Takeshi",
+    "middleName": "",
+    "lastName": "Sendo",
+    "email": "super_admin@gmail.com",
+    "passwordHash": "$2a$10$YDnCvchbI6RroY.yWrY64.E7oR8dWqLx68LijFtjIdNT9WybJdYN2",
+    "avatar": "https://res.cloudinary.com/dgpjm3auu/image/upload/v1715363253/image/default_zdiya9.jpg",
+    "registered": "Mon Apr 1 2024 11:17:40 GMT+0800 (Philippine Standard Time)",
+    "role": "Super Admin",
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "65e27a53626eb0003f52f181"
+    },
+    "firstName": "Kozuki",
+    "middleName": "",
+    "lastName": "Oden",
+    "email": "admin@gmail.com",
+    "passwordHash": "$2a$10$21H3aKg7pZ.jSjZmZNAs4efX54xVE1.ikGVAbMfXqp5UCvCKWp.iu",
+    "avatar": "https://res.cloudinary.com/dgpjm3auu/image/upload/v1715363253/image/default_zdiya9.jpg",
+    "registered": "Mon Apr 2 2024 11:17:40 GMT+0800 (Philippine Standard Time)",
+    "role": "Admin",
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "65e27a8c626eb0003f52f18d"
+    },
+    "firstName": "James",
+    "middleName": "",
+    "lastName": "Lampaza",
+    "email": "lampazaj@gmail.com",
+    "passwordHash": "$2a$10$4HktIfZUHu/1CCBXNs9PCOwn/k25lZuQ1beQ7c7jH7miU9LKvYr1y",
+    "avatar": "https://res.cloudinary.com/dgpjm3auu/image/upload/v1715363253/image/default_zdiya9.jpg",
+    "registered": "Mon Apr 4 2024 11:17:40 GMT+0800 (Philippine Standard Time)",
+    "role": "User",
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "66306049e733c5d6e5635440"
+    },
+    "firstName": "Jacob",
+    "middleName": "",
+    "lastName": "Lampaza",
+    "email": "gdumy14@gmail.com",
+    "passwordHash": "$2a$10$AOMozAe1ljyHaQOVS4vBtOxqa8X1xmw0t4idiQv/fzmHr1CRO.S5G",
+    "avatar": "https://res.cloudinary.com/dgpjm3auu/image/upload/v1715363253/image/default_zdiya9.jpg",
+    "registered": "Tue Apr 30 2024 10:59:58 GMT+0800 (Philippine Standard Time)",
+    "role": "User",
+    "__v": 0
+  }
+]
