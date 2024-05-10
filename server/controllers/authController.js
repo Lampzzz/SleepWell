@@ -155,6 +155,7 @@ const verifyOTP = async (req, res) => {
         }
 
         await OTP.deleteMany({ email });
+
         await User.create({
           firstName,
           lastName,

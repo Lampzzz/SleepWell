@@ -41,7 +41,7 @@ const UserNavbar = () => {
               style={{ cursor: "pointer" }}
             >
               <img
-                src={`https://sleepwell-server.vercel.app/images/${user.avatar}`}
+                src={user.avatar}
                 style={{ width: "45px", height: "45px" }}
                 className="rounded-circle me-2"
               />

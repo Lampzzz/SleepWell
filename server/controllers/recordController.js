@@ -1,18 +1,11 @@
 import Record from "../models/recordModel.js";
 import User from "../models/userModel.js";
 import errorHandler from "../utils/errorHandler.js";
+import cloudinary from "../utils/cloudinary.js";
 
 const createRecord = async (req, res) => {
   const user = await User.findById(req.user._id);
   const { bedtime, wakeUp, sleepDuration, snoreCount } = req.body;
-
-  // const formatDate = (date) => {
-  //   const formattedDate = new Date(date);
-  //   const month = (formattedDate.getMonth() + 1).toString().padStart(2, "0");
-  //   const day = formattedDate.getDate().toString().padStart(2, "0");
-  //   const year = formattedDate.getFullYear().toString();
-  //   return `${month}/${day}/${year}`;
-  // };
 
   try {
     const firstRecord = await Record.findOne({ userID: user._id }).sort({
@@ -22,6 +15,7 @@ const createRecord = async (req, res) => {
     let weekNumber = 1;
     let weekStartDate;
     let weekEndDate;
+    let videoUrl = "";
 
     if (!firstRecord) {
       weekStartDate = new Date();
@@ -44,13 +38,23 @@ const createRecord = async (req, res) => {
       weekEndDate.setDate(weekEndDate.getDate() + 6);
     }
 
+    if (req.file) {
+      const result = await cloudinary.uploader.upload(req.file.path, {
+        folder: "video",
+        resource_type: "video",
+        public_id: `${user._id}_video`,
+      });
+
+      videoUrl = result.secure_url;
+    }
+
     const record = await Record.create({
       user: user._id,
       bedtime,
       wakeUp,
       sleepDuration,
       snoreCount,
-      video: req.file ? req.file.filename : "",
+      video: videoUrl,
       week: `Week ${weekNumber}`,
     });
 

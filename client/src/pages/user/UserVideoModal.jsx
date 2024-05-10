@@ -27,10 +27,7 @@ const UserVideoModal = ({ video, onClose }) => {
                 </div>
                 <div className="modal-body text-center">
                   <video controls>
-                    <source
-                      src={`http://localhost:3000/videos/${video}`}
-                      type="video/webm"
-                    />
+                    <source src={video} type="video/webm" />
                     Your browser does not support the video tag.
                   </video>
                 </div>
