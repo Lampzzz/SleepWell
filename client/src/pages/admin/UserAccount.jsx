@@ -102,7 +102,7 @@ const UserAccount = () => {
                     <td>{startIndex + index + 1}</td>
                     <td>
                       <img
-                        src={user.avatar}
+                        src={`http://localhost:3000/images/${user.avatar}`}
                         style={{ width: "40px", height: "40px" }}
                         className="rounded-circle me-2"
                         alt={`${user.firstName} ${user.lastName}`}

@@ -40,16 +40,7 @@ const updateUserProfile = async (req, res) => {
     user.lastName = lastName || user.lastName;
     user.middleName = middleName !== undefined ? middleName : "";
     user.email = req.body.email || user.email;
-
-    if (req.file) {
-      const result = await cloudinary.uploader.upload(req.file.path, {
-        folder: "image",
-        public_id: `${user._id}_avatar`,
-        overwrite: true,
-      });
-
-      user.avatar = result.secure_url;
-    }
+    user.avatar = req.file ? req.file.filename : user.avatar;
 
     if (user.firstName && !nameRegex.test(user.firstName)) {
       errors.push({

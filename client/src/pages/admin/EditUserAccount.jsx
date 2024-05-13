@@ -146,7 +146,11 @@ const EditUserAccount = () => {
           <div className="col-12 col-md-8 col-lg-6 mx-auto">
             <form onSubmit={handleSubmit}>
               <Avatar
-                src={user.image ? URL.createObjectURL(user.image) : user.avatar}
+                src={
+                  user.image
+                    ? URL.createObjectURL(user.image)
+                    : `http://localhost:3000/images/${user.avatar}`
+                }
                 handleChange={handleChange}
               />
               <div className="row mb-2">

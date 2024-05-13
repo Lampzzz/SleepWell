@@ -41,7 +41,7 @@ const UserNavbar = () => {
               style={{ cursor: "pointer" }}
             >
               <img
-                src={user.avatar}
+                src={`http://localhost:3000/images/${user.avatar}`}
                 style={{ width: "45px", height: "45px" }}
                 className="rounded-circle me-2"
               />

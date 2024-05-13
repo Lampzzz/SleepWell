@@ -15,7 +15,6 @@ const createRecord = async (req, res) => {
     let weekNumber = 1;
     let weekStartDate;
     let weekEndDate;
-    let videoUrl = "";
 
     if (!firstRecord) {
       weekStartDate = new Date();
@@ -38,23 +37,13 @@ const createRecord = async (req, res) => {
       weekEndDate.setDate(weekEndDate.getDate() + 6);
     }
 
-    if (req.file) {
-      const result = await cloudinary.uploader.upload(req.file.path, {
-        folder: "video",
-        resource_type: "video",
-        public_id: `${user._id}_video`,
-      });
-
-      videoUrl = result.secure_url;
-    }
-
     const record = await Record.create({
       user: user._id,
       bedtime,
       wakeUp,
       sleepDuration,
       snoreCount,
-      video: videoUrl,
+      video: req.file ? req.file.filename : "",
       week: `Week ${weekNumber}`,
     });
 
