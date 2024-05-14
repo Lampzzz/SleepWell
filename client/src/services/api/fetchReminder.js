@@ -13,7 +13,6 @@ export const fetchReminder = () => {
         minute: data.minute,
         meridiem: data.meridiem,
       });
-      console.log(data);
     }
   }, [data, refetch]);
 

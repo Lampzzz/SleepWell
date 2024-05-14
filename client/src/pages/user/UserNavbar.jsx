@@ -6,22 +6,21 @@ import NavbarLink from "../../components/navbar/NavbarLink";
 import Logout from "../../components/dashboard/Logout";
 import logo from "../../assets/image/logo.png";
 import ReminderLink from "../../components/navbar/ReminderLink";
+import UserSideBar from "../../components/navbar/UserSideBar";
 
 const UserNavbar = () => {
   const { user } = fetchUserDetail();
 
   return (
     <>
-      <nav className="navbar navbar-expand-lg px-0 px-md-5 py-3 sticky-top bg-white border-bottom">
+      <nav className="navbar navbar-expand-lg px-0 px-lg-5 py-3 sticky-top bg-white border-bottom">
         <div className="container-fluid">
           <button
-            className="navbar-toggler navbar__btn"
+            className="navbar-toggler border-0 shadow-none "
             type="button"
             data-bs-toggle="offcanvas"
-            data-bs-target="#dashboardSideNavBar"
-            aria-controls="dashboardSideNavBar"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
+            data-bs-target="#offcanvasExample"
+            aria-controls="offcanvasExample"
           >
             <RxHamburgerMenu className="navbar-toggler-icon" />
           </button>
@@ -68,6 +67,7 @@ const UserNavbar = () => {
           </div>
         </div>
       </nav>
+      <UserSideBar />
     </>
   );
 };
