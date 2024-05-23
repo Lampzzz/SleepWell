@@ -15,7 +15,6 @@ const UserReminder = () => {
   const [createReminder, { isLoading }] = useCreateReminderMutation();
   const { reminder } = fetchReminder();
   const [audio, setAudio] = useState(null);
-  const [isPlaying, setIsPlaying] = useState(false);
   const audioAlarm = new Audio(alarmSound);
 
   useEffect(() => {
@@ -61,8 +60,6 @@ const UserReminder = () => {
   };
 
   const startAlarm = () => {
-    // console.log("Audio is Playing");
-
     toast("It's time to sleep well", {
       position: "bottom-right",
       autoClose: false,
@@ -75,8 +72,6 @@ const UserReminder = () => {
   };
 
   const stopAlarm = () => {
-    // console.log("Audio Stopped");
-
     if (audio) {
       audio.pause();
       audio.currentTime = 0;
@@ -94,9 +89,6 @@ const UserReminder = () => {
     }
 
     reminderTime.setMinutes(minute);
-
-    // console.log(`Current Time: ${currentTime.getMinutes()}`);
-    // console.log(`Reminder Time: ${reminderTime.getMinutes()}`);
 
     if (
       reminderTime.getHours() === currentTime.getHours() &&
